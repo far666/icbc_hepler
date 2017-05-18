@@ -8,6 +8,20 @@ class IcbcHelperTest extends TestCase
    public function setUp()
    {
       //set test data
+      $this->test_data =  array(
+         'TranSerialNo' => 'HFG000000000000000041533',
+         'orderid' => '201606071522162989',
+         'amount' => '100',
+         'merID' => '0119EC20000161',
+         'merAcct' => '0108000400000010132',
+         'resultType' => '1',
+         'orderDate' => '20160607152216', //YYYYMMDDHHmmss
+         'notifyDate' => '20160607152019',
+         'tranStat' => '1', //訂單狀態1, 2, 3
+         'comment' => '', //error code and msg
+         'remark1' => 'aa',
+         'remark2' => 'bb',
+      );
    }
 
    //after test
@@ -18,27 +32,42 @@ class IcbcHelperTest extends TestCase
 
    /**
     * @test
-    *
     */
    public function 測試建立物件()
    {
-      $data = array(
-         'TranSerialNo' => '12345asfsadf',
-         'orderid' => 'is order id',
-         'merID' => 'is mer id',
-         'merAcct' => 'is acct',
-         'resultType' => 'is result type',
-         'orderDate' => '20170102001122', //YYYYMMDDHHmmss
-         'notifyDate' => '20170102001123',
-         'tranStat' => '1', //訂單狀態1, 2, 3
-         'comment' => '', //error code and msg
-         'remark1' => '',
-         'remark2' => '',
-      );
-
-      $helper = new IcbcHelper($data);
-
+      $helper = new IcbcHelper($this->test_data);
       $this->assertInstanceOf("IcbcHelper", $helper);
+   }
+
+   /**
+    * @test
+    */
+   public function getPostDatas()
+   {
+      $exceped_datas = array(
+         'interfaceName' => 'ICBC_MYEBANK_B4C',
+         'interfaceVersion' => '3.0.0.0',
+         'areaCode' => '0119',
+         'curType' => 'MOP',
+         'TranSerialNo' => 'HFG000000000000000041533',
+         'orderid' => '201606071522162989',
+         'amount' => '100',
+         'merID' => '0119EC20000161',
+         'merAcct' => '0108000400000010132',
+         'resultType' => '1',
+         'orderDate' => '20160607152216',
+         'notifyDate' => '20160607152019',
+         'tranStat' => '1',
+         'comment' => '', 
+         'remark1' => 'aa',
+         'remark2' => 'bb',
+         'signMsg' => '',
+      );
+      
+      $helper = new IcbcHelper($this->test_data);
+      $datas = $helper->getPostDatas();
+      
+      $this->assertSame($exceped_datas, $datas);
    }
 }
 

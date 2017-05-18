@@ -45,4 +45,27 @@ class IcbcHelper
    {
       //'signMsg'     => urlencode('c3X9vHKHIy/3GRvVOvR5ShEtUMBAJa4y5ACrMIrGiWsciPIkWVa7pmmlu8PYo17DgLJvi/kPZXm+XEPIoLzTADhV+393wIJ981+CbLlqiyKk8CwlniMUJP6qg3rTxbRJaGcITt1WE7WdY+ZkyzxCnYwzogCdua8mzQ/rn4dqihM=')
    }
+
+   public function getPostDatas()
+   {
+      return array(
+         'interfaceName' => $this->interfaceName,
+         'interfaceVersion' => $this->interfaceVersion,
+         'areaCode' => $this->areaCode,
+         'curType' => $this->curType,
+         'TranSerialNo' => $this->TranSerialNo,
+         'orderid' => $this->orderid,
+         'amount' => $this->amount,
+         'merID' => $this->merID,
+         'merAcct' => $this->merAcct,
+         'resultType' => $this->resultType,
+         'orderDate' => $this->orderDate,
+         'notifyDate' => $this->notifyDate,
+         'tranStat' => $this->tranStat,
+         'comment' => $this->comment, 
+         'remark1' => $this->remark1,
+         'remark2' => $this->remark2,
+         'signMsg' => $this->signMsg,
+      );
+   }
 }
