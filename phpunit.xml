@@ -1,0 +1,26 @@
+<!-- remember to create folder tests/, tests/logs -->
+<phpunit
+   bootstrap="./phpunit_bootstrap.php"
+    colors="true">
+    <testsuites>
+        <testsuite name="ICBC test">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./</directory>
+        </whitelist>
+        <blacklist>
+            <directory suffix=".php">./tests</directory>
+            <directory suffix=".php">./extlibs</directory>
+            <directory suffix=".php">./vendor</directory>
+        </blacklist>
+    </filter>
+    <logging>
+        <!--<log type="coverage-html" target="tests/logs/html"/>-->
+        <!--<log type="coverage-clover" target="tests/logs/clover.xml"/>-->
+        <!--<log type="junit" target="tests/logs/junit.xml" logIncompleteSkipped="false"/>-->
+    </logging>
+</phpunit>
+
